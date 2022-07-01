@@ -1,1 +1,1 @@
-# programmatically-manage-sendgrid-dynamic-email-templates
+# SendGrid Dynamic Email Template Manager CLI
