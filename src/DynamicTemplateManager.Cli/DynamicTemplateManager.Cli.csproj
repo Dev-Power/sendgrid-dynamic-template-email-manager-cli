@@ -12,4 +12,7 @@
     <ItemGroup>
       <PackageReference Include="CliFx" Version="2.2.6" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Commands" />
+    </ItemGroup>
 </Project>
