@@ -2,13 +2,12 @@ using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
 using ConsoleTables;
-using DynamicTemplateManager.Cli.Services.Impl;
 using DynamicTemplateManager.Cli.Services.Interfaces;
 
 namespace DynamicTemplateManager.Cli.Commands.TemplateCommands;
 
 [Command("list-templates")]
-public class ListTemplatesCommand : SendGridCommandBase, ICommand
+public class ListTemplatesCommand : ICommand
 {
     private readonly IDynamicTemplateService _dynamicTemplateService;
 
@@ -19,7 +18,7 @@ public class ListTemplatesCommand : SendGridCommandBase, ICommand
     
     public ValueTask ExecuteAsync(IConsole console)
     {
-        var templates = _dynamicTemplateService.ListTemplates(SendGridApiKey).Result;
+        var templates = _dynamicTemplateService.ListTemplates().Result;
 
         var table = new ConsoleTable("Template Name", "Template Id");
         
