@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>dtm</ToolCommandName>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="CliFx" Version="2.2.6" />
+      <PackageReference Include="ConsoleTables" Version="2.4.2" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="SendGrid" Version="9.28.0" />
+      <PackageReference Include="SendGrid.Extensions.DependencyInjection" Version="1.0.1" />
+      <PackageReference Include="Sharprompt" Version="2.4.1" />
+    </ItemGroup>
+</Project>
