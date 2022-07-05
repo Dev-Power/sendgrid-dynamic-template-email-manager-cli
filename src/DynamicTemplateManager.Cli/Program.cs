@@ -13,6 +13,14 @@ using IHost host = Host.CreateDefaultBuilder(args)
 
         // Register commands
         .AddTransient<ListTemplatesCommand>()
+        .AddTransient<CreateTemplateCommand>()
+        .AddTransient<UpdateTemplateCommand>()
+        .AddTransient<DeleteTemplateCommand>()
+        .AddTransient<DuplicateTemplateCommand>()
+        .AddTransient<ListVersionsCommand>()
+        .AddTransient<CreateVersionCommand>()
+        .AddTransient<UpdateVersionCommand>()
+        .AddTransient<DeleteVersionCommand>()
         
         // Register SendGridClient
         .AddSendGrid(options => options.ApiKey = hostBuilderContext.Configuration["SendGridSettings:ApiKey"])

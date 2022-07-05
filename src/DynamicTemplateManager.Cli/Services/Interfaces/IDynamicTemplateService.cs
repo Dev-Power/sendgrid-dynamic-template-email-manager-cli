@@ -7,7 +7,8 @@ public interface IDynamicTemplateService
     Task UpdateTemplate(string templateName, string templateId);
     Task DeleteTemplate(string templateId);
     Task<List<(string, string)>> ListVersions(string templateId);
-    Task<string> CreateVersion(string templateId, string versionName, string templateFileName);
-    Task UpdateVersion(string templateId, string versionId, string versionName, string templateFileName);
+    Task<string> CreateVersion(string templateId, string versionName, string htmltemplateData);
+    Task UpdateVersion(string templateId, string versionId, string versionName, string htmltemplateData);
     Task DeleteVersion(string templateId, string versionId);
+    Task<string> DuplicateTemplate(string templateName, string templateId);
 }

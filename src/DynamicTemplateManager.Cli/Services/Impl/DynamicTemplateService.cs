@@ -100,6 +100,28 @@ public class DynamicTemplateService : IDynamicTemplateService
         }
     }
     
+    public async Task<string> DuplicateTemplate(string templateName, string templateId)
+    {
+        var data = new
+        {
+            name = templateName
+        };
+        
+        var response = await _sendGridClient.RequestAsync(
+            method: SendGridClient.Method.POST,
+            urlPath: $"templates/{templateId}",
+            requestBody: JsonConvert.SerializeObject(data)
+        );
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            HandleFailedResponse(response);
+        }
+        
+        var result = response.Body.ReadAsStringAsync().Result;
+        return JObject.Parse(result)["id"].ToString();
+    }
+    
     public async Task<List<(string, string)>> ListVersions(string templateId)
     {
         var response = await _sendGridClient.RequestAsync(
@@ -125,10 +147,8 @@ public class DynamicTemplateService : IDynamicTemplateService
         return versionIdNameTuples;
     }
     
-    public async Task<string> CreateVersion(string templateId, string versionName, string templateFileName)
+    public async Task<string> CreateVersion(string templateId, string versionName, string htmltemplateData)
     {
-        string htmltemplateData = await File.ReadAllTextAsync($"Templates/{templateFileName}.html");
-        
         var data = new
         {
             template_id = templateId,
@@ -156,10 +176,8 @@ public class DynamicTemplateService : IDynamicTemplateService
         return versionId;
     }
 
-    public async Task UpdateVersion(string templateId, string versionId, string versionName, string templateFileName)
+    public async Task UpdateVersion(string templateId, string versionId, string versionName, string htmltemplateData)
     {
-        string htmltemplateData = await File.ReadAllTextAsync($"Templates/{templateFileName}.html");
-        
         var data = new
         {
             template_id = templateId,
